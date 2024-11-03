@@ -1,0 +1,47 @@
+name: "Kind Cluster"
+description: "Create a kind (Kubernetes IN Docker) cluster"
+author: "The Helm authors"
+branding:
+  color: blue
+  icon: box
+inputs:
+  version:
+    description: "The kind version to use (default: v0.22.0)"
+    required: false
+    default: "v0.22.0"
+  config:
+    description: "The path to the kind config file"
+    required: false
+  kubeconfig:
+    description: "The path to the kubeconfig config file"
+    required: false
+  node_image:
+    description: "The Docker image for the cluster nodes"
+    required: false
+  cluster_name:
+    description: "The name of the cluster to create (default: chart-testing)"
+    required: false
+    default: "chart-testing"
+  wait:
+    description: "The duration to wait for the control plane to become ready (default: 60s)"
+    required: false
+    default: "60s"
+  verbosity:
+    description: "The verbosity level for kind (default: 0)"
+    default: "0"
+    required: false
+  kubectl_version:
+    description: "The kubectl version to use (default: v1.29.3)"
+    required: false
+    default: "v1.29.3"
+  install_only:
+    description: "Skips cluster creation, only install kind (default: false)"
+    required: false
+  ignore_failed_clean:
+    description: "Whether to ignore the post-delete the cluster (default: false)"
+    default: "false"
+    required: false
+runs:
+  using: "node20"
+  main: "main.js"
+  post: "cleanup.js"
